@@ -1,13 +1,48 @@
- //declare bacteria variables here   
+Bacteria [] colony = new Bacteria[1];
+int pink = color(255, 198, 198);
+int lilac = color(254, 198, 255);
+int purple = color(209, 180, 255);
+int blue = color (180, 206, 255);
+int mint = color(162, 255, 246);
+int green = color(162, 255, 172);
+int yellow = color(235, 255, 126);
+
+int colors[] = {pink, lilac, purple, blue, mint, green, yellow};
+
  void setup()   
  {     
- 	//initialize bacteria variables here   
+ 	 size(500,500);
+ 
+   //int selectedColor = (int)(Math.random()
+   for(int i = 0; i < colony.length; i++){
+     colony[i] = new Bacteria(color(255,0,0));
+   }
  }   
  void draw()   
  {    
- 	//move and show the bacteria   
+ 	background(0);
+  for(int i = 0; i < colony.length; i++){
+     colony[i].move();
+     colony[i].show();
+   }
  }  
  class Bacteria    
  {     
- 	//lots of java!   
+ 	int myX, myY, myColor;
+  
+  Bacteria(int c){
+    myColor = c;
+    myX = 250;
+    myY = 250;
+  }
+  
+  void move(){
+    myX = myX + (int)(Math.random()*3)-1;
+    myY = myY + (int)(Math.random()*3)-1;
+  }
+  
+  void show(){
+    fill(myColor);
+    ellipse(myX, myY, 50, 50);
+  }
  }    
