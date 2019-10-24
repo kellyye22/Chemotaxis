@@ -1,4 +1,4 @@
-Bacteria [] colony = new Bacteria[30];
+Bacteria [] colony = new Bacteria[100];
 int pink = color(255, 198, 198);
 int lilac = color(254, 198, 255);
 int purple = color(209, 180, 255);
@@ -32,13 +32,22 @@ int colors[] = {pink, lilac, purple, blue, mint, green, yellow};
   
   Bacteria(int c){
     myColor = c;
-    myX = 250;
-    myY = 250;
+    myX = (int)(Math.random()*500);
+    myY = (int)(Math.random()*500);
   }
   
   void move(){
-    myX = myX + (int)(Math.random()*3)-1;
-    myY = myY + (int)(Math.random()*3)-1;
+    if(mouseX > myX){
+      myX = myX + (int)(Math.random()*3)+1;
+    }else{
+      myX = myX + (int)(Math.random()*3)-3;
+    }
+    
+    if(mouseY > myY){
+      myY = myY + (int)(Math.random()*3)+1;
+    }else{
+      myY = myY + (int)(Math.random()*3)-3;
+    }
   }
   
   void show(){
