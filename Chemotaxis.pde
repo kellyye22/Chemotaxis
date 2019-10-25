@@ -1,4 +1,4 @@
-Bacteria [] colony = new Bacteria[100];
+Bacteria [] colony = new Bacteria[20];
 int pink = color(255, 198, 198);
 int lilac = color(254, 198, 255);
 int purple = color(209, 180, 255);
@@ -20,12 +20,27 @@ int colors[] = {pink, lilac, purple, blue, mint, green, yellow};
  }   
  void draw()   
  {    
- 	background(0);
+ 	background(255);
+  fill(100);
+  ellipse(250, 450, 150, 50);
+  fill(0);
+  textAlign(CENTER);
+  textSize(32);
+  text("Click to restart!", 250, 50);
+  ellipse(250, 455, 150, 50);
+  
   for(int i = 0; i < colony.length; i++){
      colony[i].move();
      colony[i].show();
    }
+   
  }  
+ 
+ 
+ void mouseClicked(){
+   setup();
+ }
+ 
  class Bacteria    
  {     
  	int myX, myY, myColor;
@@ -37,17 +52,25 @@ int colors[] = {pink, lilac, purple, blue, mint, green, yellow};
   }
   
   void move(){
-    if(mouseX > myX){
-      myX = myX + (int)(Math.random()*3)+1;
-    }else{
-      myX = myX + (int)(Math.random()*3)-3;
+    if((myX >= 150 && myX <= 325) && (myY >= 405)){
+      myX = 1000;
+      myY = 1000;
+      fill(0);
+    }else if (myX != 1000 && myY != 1000){
+      if(mouseX > myX){
+        myX = myX + (int)(Math.random()*3);
+      }else{
+        myX = myX - (int)(Math.random()*3);
+      }
+    
+      if(mouseY > myY){
+        myY = myY + (int)(Math.random()*3);
+      }else{
+        myY = myY - (int)(Math.random()*3);
+      }
     }
     
-    if(mouseY > myY){
-      myY = myY + (int)(Math.random()*3)+1;
-    }else{
-      myY = myY + (int)(Math.random()*3)-3;
-    }
+    
   }
   
   void show(){
